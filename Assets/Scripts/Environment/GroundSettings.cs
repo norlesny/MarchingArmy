@@ -25,7 +25,7 @@ namespace Environment
 				if (component == null)
 				{
 					throw new MissingComponentException(
-						$"{nameof(EnvironmentSettings)}: {nameof(MeshInstanceRenderer)} not found on provided ground object");
+						$"{nameof(EnvironmentSettings)}: {nameof(MeshInstanceRenderer)} not found on provided ground prefab");
 				}
 
 				return component.Value;

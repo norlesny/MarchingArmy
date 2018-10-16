@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ea7a48d1e2411c8468d1a78dab94a7, type: 3}
+  m_Name: SoldierSettings
+  m_EditorClassIdentifier: 
+  forward:
+    x: 1
+    y: 0
+    z: 0
+  prefab: {fileID: 1640770116431668, guid: a710f9f26a371ff4bb72d1db95e0aa5e, type: 2}
+  speed: 1
