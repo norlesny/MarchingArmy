@@ -12,7 +12,7 @@ namespace Army
 		[SerializeField] private GameObject prefab;
 		[SerializeField] private float speed;
 
-		public MeshInstanceRenderer GroundRenderer
+		public MeshInstanceRenderer SoldierRenderer
 		{
 			get
 			{
