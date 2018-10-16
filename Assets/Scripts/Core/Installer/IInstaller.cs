@@ -1,7 +1,6 @@
-namespace DefaultNamespace
+namespace Core.Installer
 {
 	public interface IInstaller
 	{
-		
 	}
 }
