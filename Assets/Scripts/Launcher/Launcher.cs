@@ -6,8 +6,8 @@ namespace Launcher
 {
 	public class Launcher : MonoBehaviour
 	{
-		[SerializeField] private EnvironmentSettings environment;
 		[SerializeField] private ArmySettings army;
+		[SerializeField] private EnvironmentSettings environment;
 
 		private void Awake()
 		{

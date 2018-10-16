@@ -59,7 +59,8 @@ namespace Army.Systems
 
 		private void SpawnSoldiersRow()
 		{
-			EntityArchetype archetype = entityManager.CreateArchetype(typeof(Position), typeof(Heading), typeof(Speed));
+			EntityArchetype archetype =
+				entityManager.CreateArchetype(typeof(Position), typeof(Heading), typeof(Speed), typeof(XBounds));
 
 			int numberOfSoldiers = GroundDimension.y * 2;
 			for (var i = 0; i < numberOfSoldiers; ++i)
@@ -76,10 +77,12 @@ namespace Army.Systems
 			SoldierSettings soldier = settings.Soldier;
 
 			var position = new float3(-GroundDimension.x, 0, horizontalPosition);
+			var xBounds = new float2(-GroundDimension.x, GroundDimension.x);
 
 			entityManager.SetComponentData(entity, new Position {Value = position});
 			entityManager.SetComponentData(entity, new Heading {Value = soldier.Forward});
 			entityManager.SetComponentData(entity, new Speed {Value = soldier.Speed});
+			entityManager.SetComponentData(entity, new XBounds {Value = xBounds});
 
 			entityManager.AddSharedComponentData(entity, soldier.Renderer);
 		}
