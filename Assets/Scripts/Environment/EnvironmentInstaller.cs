@@ -1,7 +1,6 @@
 using System;
 using Core.Installer;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace Environment
@@ -28,10 +27,12 @@ namespace Environment
 		{
 			Entity entity = entityManager.CreateEntity(typeof(Position), typeof(Scale));
 
-			entityManager.SetComponentData(entity, new Position {Value = float3.zero});
-			entityManager.SetComponentData(entity, new Scale {Value = new float3(1f, 1f, 1f)});
+			GroundSettings groundSettings = settings.Ground;
 
-			entityManager.AddSharedComponentData(entity, settings.GroundRenderer);
+			entityManager.SetComponentData(entity, new Position {Value = groundSettings.Position});
+			entityManager.SetComponentData(entity, new Scale {Value = groundSettings.Scale});
+
+			entityManager.AddSharedComponentData(entity, groundSettings.GroundRenderer);
 		}
 	}
 }

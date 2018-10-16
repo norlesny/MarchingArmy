@@ -11,4 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42060579e3bc494f85479134453245d, type: 3}
   m_Name: EnvironmentSettings
   m_EditorClassIdentifier: 
-  ground: {fileID: 1595455598961738, guid: 79e8ee464a9e3ab4d99185ae8c8bc41e, type: 2}
+  ground:
+    prefab: {fileID: 1595455598961738, guid: 79e8ee464a9e3ab4d99185ae8c8bc41e, type: 2}
+    position:
+      x: 0
+      y: -1
+      z: 0
+    scale:
+      x: 5
+      y: 1
+      z: 5
