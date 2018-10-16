@@ -7,7 +7,7 @@ namespace Launcher
 	public class Launcher : MonoBehaviour
 	{
 		[SerializeField] private EnvironmentSettings environment;
-		[SerializeField] private SoldierSettings soldier;
+		[SerializeField] private ArmySettings army;
 
 		private void Awake()
 		{
@@ -17,7 +17,7 @@ namespace Launcher
 		private void Run()
 		{
 			new EnvironmentInstaller().Install(environment);
-			new ArmyInstaller().Install(soldier);
+			new ArmyInstaller().Install(army);
 		}
 	}
 }

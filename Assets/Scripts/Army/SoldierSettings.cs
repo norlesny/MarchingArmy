@@ -1,3 +1,4 @@
+using System;
 using Environment;
 using Unity.Mathematics;
 using Unity.Rendering;
@@ -5,14 +6,14 @@ using UnityEngine;
 
 namespace Army
 {
-	[CreateAssetMenu(menuName = "Marching Army/Soldier Settings")]
-	public sealed class SoldierSettings : ScriptableObject
+	[Serializable]
+	public struct SoldierSettings
 	{
 		[SerializeField] private float3 forward;
 		[SerializeField] private GameObject prefab;
 		[SerializeField] private float speed;
 
-		public MeshInstanceRenderer SoldierRenderer
+		public MeshInstanceRenderer Renderer
 		{
 			get
 			{

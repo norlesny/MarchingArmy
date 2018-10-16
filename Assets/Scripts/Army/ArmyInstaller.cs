@@ -7,12 +7,14 @@ using Unity.Transforms;
 
 namespace Army
 {
-	public sealed class ArmyInstaller : IInstaller<SoldierSettings>
+	public sealed class ArmyInstaller : IInstaller<ArmySettings>
 	{
-		private EntityManager entityManager;
-		private SoldierSettings settings;
+		private static readonly int2 GroundDimension = new int2(25, 25);
 
-		public void Install(SoldierSettings settings)
+		private EntityManager entityManager;
+		private ArmySettings settings;
+
+		public void Install(ArmySettings settings)
 		{
 			if (settings == null)
 			{
@@ -22,18 +24,34 @@ namespace Army
 			entityManager = World.Active.GetOrCreateManager<EntityManager>();
 			this.settings = settings;
 
-			SpawnSoldier();
+			SpawnSoldiers();
 		}
 
-		private void SpawnSoldier()
+		private void SpawnSoldiers()
 		{
-			Entity entity = entityManager.CreateEntity(typeof(Position), typeof(Heading), typeof(Speed));
+			EntityArchetype archetype = entityManager.CreateArchetype(typeof(Position), typeof(Heading), typeof(Speed));
 
-			entityManager.SetComponentData(entity, new Position {Value = float3.zero});
-			entityManager.SetComponentData(entity, new Heading {Value = settings.Forward});
-			entityManager.SetComponentData(entity, new Speed {Value = settings.Speed});
+			int numberOfSoldiers = GroundDimension.y * 2;
+			for (var i = 0; i < numberOfSoldiers; ++i)
+			{
+				float horizontalPosition = i - numberOfSoldiers / 2f + 0.5f;
+				SpawnSoldier(archetype, horizontalPosition);
+			}
+		}
 
-			entityManager.AddSharedComponentData(entity, settings.SoldierRenderer);
+		private void SpawnSoldier(EntityArchetype archetype, float horizontalPosition)
+		{
+			Entity entity = entityManager.CreateEntity(archetype);
+
+			SoldierSettings soldier = settings.Soldier;
+
+			var position = new float3(-GroundDimension.x, 0, horizontalPosition);
+
+			entityManager.SetComponentData(entity, new Position {Value = position});
+			entityManager.SetComponentData(entity, new Heading {Value = soldier.Forward});
+			entityManager.SetComponentData(entity, new Speed {Value = soldier.Speed});
+
+			entityManager.AddSharedComponentData(entity, soldier.Renderer);
 		}
 	}
 }
