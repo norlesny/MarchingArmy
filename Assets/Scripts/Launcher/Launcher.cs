@@ -9,10 +9,10 @@ namespace Launcher
 
 		private void Awake()
 		{
-			Start();
+			Run();
 		}
 
-		private void Start()
+		private void Run()
 		{
 			new EnvironmentInstaller().Install(environment);
 		}
