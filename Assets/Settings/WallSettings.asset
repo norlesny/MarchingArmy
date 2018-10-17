@@ -20,3 +20,9 @@ MonoBehaviour:
     x: 2
     y: 10
     z: 50
+  shooter:
+    prefab: {fileID: 1242750938459272, guid: 2d9832872bf78774bb6ef544eec8698a, type: 2}
+    scale:
+      x: 2
+      y: 1
+      z: 1

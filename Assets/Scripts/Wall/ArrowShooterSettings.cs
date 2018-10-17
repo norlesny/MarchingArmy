@@ -1,16 +1,15 @@
+using System;
 using Unity.Mathematics;
 using Unity.Rendering;
 using UnityEngine;
 
 namespace Wall
 {
-	[CreateAssetMenu(menuName = "Marching Army/Wall Settings")]
-	public sealed class WallSettings : ScriptableObject
+	[Serializable]
+	public struct ArrowShooterSettings
 	{
-		[SerializeField] private float3 position;
 		[SerializeField] private GameObject prefab;
 		[SerializeField] private float3 scale;
-		[SerializeField] private ArrowShooterSettings shooter;
 
 		public MeshInstanceRenderer Renderer
 		{
@@ -21,18 +20,13 @@ namespace Wall
 				if (component == null)
 				{
 					throw new MissingComponentException(
-						$"{nameof(WallSettings)}: {nameof(MeshInstanceRenderer)} not found on provided wall prefab");
+						$"{nameof(ArrowShooterSettings)}: {nameof(MeshInstanceRenderer)} not found on provided shooter prefab");
 				}
 
 				return component.Value;
 			}
 		}
 
-
-		public float3 Position => position;
-
 		public float3 Scale => scale;
-
-		public ArrowShooterSettings Shooter => shooter;
 	}
 }
