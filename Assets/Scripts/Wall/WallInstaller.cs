@@ -1,4 +1,5 @@
 using System;
+using Common.Components;
 using Core.Installer;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -24,6 +25,33 @@ namespace Wall
 			SpawnWall();
 
 			SpawnArrowShooters();
+
+			SpawnArrow();
+		}
+
+		private void SpawnArrow()
+		{
+			EntityArchetype archetype =
+				entityManager.CreateArchetype(typeof(Position), typeof(Heading), typeof(Scale), typeof(Speed));
+
+			for (var i = 0; i < 1; ++i)
+			{
+				Entity entity = entityManager.CreateEntity(archetype);
+
+				var position = new float3(
+					settings.Position.x,
+					(settings.Shooter.Scale.y + settings.Scale.y) / 2f + settings.Position.y,
+					0);
+
+				var heading = new float3(-1, 0, 0);
+
+				entityManager.SetComponentData(entity, new Position {Value = position});
+				entityManager.SetComponentData(entity, new Heading {Value = heading});
+				entityManager.SetComponentData(entity, new Scale {Value = settings.Arrow.Scale});
+				entityManager.SetComponentData(entity, new Speed {Value = settings.Arrow.Speed});
+
+				entityManager.AddSharedComponentData(entity, settings.Arrow.Renderer);
+			}
 		}
 
 		private void SpawnArrowShooters()

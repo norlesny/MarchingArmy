@@ -7,6 +7,7 @@ namespace Wall
 	[CreateAssetMenu(menuName = "Marching Army/Wall Settings")]
 	public sealed class WallSettings : ScriptableObject
 	{
+		[SerializeField] private ArrowSettings arrow;
 		[SerializeField] private float3 position;
 		[SerializeField] private GameObject prefab;
 		[SerializeField] private float3 scale;
@@ -34,5 +35,7 @@ namespace Wall
 		public float3 Scale => scale;
 
 		public ArrowShooterSettings Shooter => shooter;
+
+		public ArrowSettings Arrow => arrow;
 	}
 }

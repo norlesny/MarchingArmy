@@ -11,6 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f792aea287845cf9cb53e56de04e1dd, type: 3}
   m_Name: WallSettings
   m_EditorClassIdentifier: 
+  arrow:
+    prefab: {fileID: 1787828893370122, guid: 626dc4f41ade8ea408cd5360485e955f, type: 2}
+    scale:
+      x: 0.8
+      y: 0.04
+      z: 0.04
+    speed: 20
   position:
     x: 25
     y: 4
