@@ -1,24 +1,28 @@
 using Common.Components;
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
+using UnityEngine;
 
 namespace Common.Systems
 {
-	public sealed class DestroyOutOfXBoundsSystem : ComponentSystem
+	public sealed class DestroyCooldownSystem : ComponentSystem
 	{
 		[Inject] private Data data;
 
 		protected override void OnUpdate()
 		{
+			float deltaTime = Time.deltaTime;
+
 			for (var i = 0; i < data.Length; ++i)
 			{
-				float3 position = data.Position[i].Value;
-				float2 bound = data.XBounds[i].Value;
-
-				if (position.x < bound.x || position.x > bound.y)
+				float cooldown = data.Cooldown[i].Value;
+				cooldown -= deltaTime;
+				if (cooldown <= 0f)
 				{
 					PostUpdateCommands.DestroyEntity(data.Entity[i]);
+				}
+				else
+				{
+					data.Cooldown[i] = new DestroyCooldown {Value = cooldown};
 				}
 			}
 		}
@@ -27,8 +31,7 @@ namespace Common.Systems
 		{
 			public readonly int Length;
 			public EntityArray Entity;
-			public ComponentDataArray<Position> Position;
-			public ComponentDataArray<XBounds> XBounds;
+			public ComponentDataArray<DestroyCooldown> Cooldown;
 		}
 	}
 }
