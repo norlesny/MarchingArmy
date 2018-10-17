@@ -1,5 +1,4 @@
 using System;
-using Environment;
 using Unity.Mathematics;
 using Unity.Rendering;
 using UnityEngine;
@@ -22,7 +21,7 @@ namespace Army
 				if (component == null)
 				{
 					throw new MissingComponentException(
-						$"{nameof(EnvironmentSettings)}: {nameof(MeshInstanceRenderer)} not found on provided soldier prefab");
+						$"{nameof(SoldierSettings)}: {nameof(MeshInstanceRenderer)} not found on provided soldier prefab");
 				}
 
 				return component.Value;

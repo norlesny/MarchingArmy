@@ -249,8 +249,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.30955192, y: 0.33504823, z: -0.117577545, w: -0.88209736}
-  m_LocalPosition: {x: 20.863052, y: 15.801601, z: -26.27903}
+  m_LocalRotation: {x: -0.30955195, y: 0.33504823, z: -0.11757755, w: -0.88209736}
+  m_LocalPosition: {x: 25.710598, y: 21.646164, z: -31.739586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -283,8 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace65b046911bc34aa5895a990ee5d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environment: {fileID: 11400000, guid: dd36f8529dc2bf648ad24d1e6fa0a40d, type: 2}
   army: {fileID: 11400000, guid: aaa960b817dd8734c92471c6644ec4d9, type: 2}
+  environment: {fileID: 11400000, guid: dd36f8529dc2bf648ad24d1e6fa0a40d, type: 2}
+  wall: {fileID: 11400000, guid: 8e3492c1599af1442aa108d9191d185c, type: 2}
 --- !u!4 &2083513735
 Transform:
   m_ObjectHideFlags: 0

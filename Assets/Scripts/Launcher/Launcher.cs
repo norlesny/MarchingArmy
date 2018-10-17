@@ -1,6 +1,7 @@
 ﻿using Army;
 using Environment;
 using UnityEngine;
+using Wall;
 
 namespace Launcher
 {
@@ -8,6 +9,7 @@ namespace Launcher
 	{
 		[SerializeField] private ArmySettings army;
 		[SerializeField] private EnvironmentSettings environment;
+		[SerializeField] private WallSettings wall;
 
 		private void Awake()
 		{
@@ -18,6 +20,7 @@ namespace Launcher
 		{
 			new EnvironmentInstaller().Install(environment);
 			new ArmyInstaller().Install(army);
+			new WallInstaller().Install(wall);
 		}
 	}
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f792aea287845cf9cb53e56de04e1dd, type: 3}
+  m_Name: WallSettings
+  m_EditorClassIdentifier: 
+  position:
+    x: 25
+    y: 4
+    z: 0
+  prefab: {fileID: 1721487437675456, guid: 40e8baad106281042829acfdca5f90a8, type: 2}
+  scale:
+    x: 2
+    y: 10
+    z: 50
