@@ -59,6 +59,7 @@ namespace Army.Systems
 
 		private void SpawnSoldiersRow()
 		{
+			// TODO: Extract spawning of the soldiers to a separate class and only call it from the system
 			EntityArchetype archetype =
 				entityManager.CreateArchetype(typeof(Position), typeof(Heading), typeof(Speed), typeof(XBounds));
 

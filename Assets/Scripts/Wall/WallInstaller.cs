@@ -1,9 +1,10 @@
 using System;
-using Common.Components;
 using Core.Installer;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using Wall.Components;
+using Wall.Systems;
 
 namespace Wall
 {
@@ -23,40 +24,15 @@ namespace Wall
 			this.settings = settings;
 
 			SpawnWall();
-
-			SpawnArrowShooters();
-
-			SpawnArrow();
+			InitializeArrowShooters();
 		}
 
-		private void SpawnArrow()
+		private void InitializeArrowShooters()
 		{
-			EntityArchetype archetype =
-				entityManager.CreateArchetype(typeof(Position), typeof(Heading), typeof(Scale), typeof(Speed));
+			SpawnArrowSystem.Initialize(entityManager, settings.Arrow);
 
-			for (var i = 0; i < 1; ++i)
-			{
-				Entity entity = entityManager.CreateEntity(archetype);
-
-				var position = new float3(
-					settings.Position.x,
-					(settings.Shooter.Scale.y + settings.Scale.y) / 2f + settings.Position.y,
-					0);
-
-				var heading = new float3(-1, 0, 0);
-
-				entityManager.SetComponentData(entity, new Position {Value = position});
-				entityManager.SetComponentData(entity, new Heading {Value = heading});
-				entityManager.SetComponentData(entity, new Scale {Value = settings.Arrow.Scale});
-				entityManager.SetComponentData(entity, new Speed {Value = settings.Arrow.Speed});
-
-				entityManager.AddSharedComponentData(entity, settings.Arrow.Renderer);
-			}
-		}
-
-		private void SpawnArrowShooters()
-		{
-			EntityArchetype archetype = entityManager.CreateArchetype(typeof(Position), typeof(Scale));
+			EntityArchetype archetype = entityManager.CreateArchetype(
+				typeof(Position), typeof(Scale), typeof(SpawnArrow), typeof(SpawnCooldown));
 
 			for (var i = 0; i < 1; ++i)
 			{
@@ -69,6 +45,7 @@ namespace Wall
 
 				entityManager.SetComponentData(entity, new Position {Value = position});
 				entityManager.SetComponentData(entity, new Scale {Value = settings.Shooter.Scale});
+				entityManager.SetComponentData(entity, new SpawnCooldown {Value = 1f});
 
 				entityManager.AddSharedComponentData(entity, settings.Shooter.Renderer);
 			}

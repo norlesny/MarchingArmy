@@ -19,7 +19,7 @@ namespace Launcher
 		private void Run()
 		{
 			new EnvironmentInstaller().Install(environment);
-			new ArmyInstaller().Install(army);
+//			new ArmyInstaller().Install(army);
 			new WallInstaller().Install(wall);
 		}
 	}
