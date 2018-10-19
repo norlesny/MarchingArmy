@@ -14,9 +14,9 @@ MonoBehaviour:
   arrow:
     prefab: {fileID: 1787828893370122, guid: 626dc4f41ade8ea408cd5360485e955f, type: 2}
     scale:
-      x: 0.8
+      x: 0.04
       y: 0.04
-      z: 0.04
+      z: 0.8
     speed: 20
   position:
     x: 25

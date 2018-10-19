@@ -14,7 +14,7 @@ namespace Wall.Systems
 
 		private static EntityManager entityManager;
 
-		// TODO: This could be passed in the `SpawnArrow` instead, it would allow for an easy way to spawn different types of arrows
+		// TODO: This could be passed in the `SpawnArrow` component instead, it would allow for an easy way to spawn different types of arrows
 		private static ArrowSettings settings;
 
 		[Inject] private Data data;
@@ -57,8 +57,8 @@ namespace Wall.Systems
 		private void SpawnArrow()
 		{
 			// TODO: Extract spawning of the arrow to a separate class and only call it from the system
-			EntityArchetype archetype = entityManager.CreateArchetype(
-				typeof(Position), typeof(Velocity), typeof(Scale), typeof(DestroyCooldown));
+			EntityArchetype archetype = entityManager.CreateArchetype(typeof(Position), typeof(Rotation),
+				typeof(Velocity), typeof(Scale), typeof(DestroyCooldown), typeof(AffectedByGravity), typeof(Attached));
 
 			for (var i = 0; i < 1; ++i)
 			{
