@@ -1,5 +1,7 @@
 ﻿using Army;
+using Common.Utils;
 using Environment;
+using Unity.Entities;
 using UnityEngine;
 using Wall;
 
@@ -18,6 +20,8 @@ namespace Launcher
 
 		private void Run()
 		{
+			Attacher.Instance = new Attacher(World.Active.GetOrCreateManager<EntityManager>());
+			
 			new EnvironmentInstaller().Install(environment);
 			new ArmyInstaller().Install(army);
 			new WallInstaller().Install(wall);
