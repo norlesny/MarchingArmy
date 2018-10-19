@@ -61,7 +61,7 @@ namespace Army.Systems
 		{
 			// TODO: Extract spawning of the soldiers to a separate class and only call it from the system
 			EntityArchetype archetype =
-				entityManager.CreateArchetype(typeof(Position), typeof(Heading), typeof(Speed), typeof(XBounds));
+				entityManager.CreateArchetype(typeof(Position), typeof(Velocity), typeof(XBounds));
 
 			int numberOfSoldiers = GroundDimension.y * 2;
 			for (var i = 0; i < numberOfSoldiers; ++i)
@@ -81,8 +81,7 @@ namespace Army.Systems
 			var xBounds = new float2(-GroundDimension.x, GroundDimension.x);
 
 			entityManager.SetComponentData(entity, new Position {Value = position});
-			entityManager.SetComponentData(entity, new Heading {Value = soldier.Forward});
-			entityManager.SetComponentData(entity, new Speed {Value = soldier.Speed});
+			entityManager.SetComponentData(entity, new Velocity {Value = soldier.Forward * soldier.Speed});
 			entityManager.SetComponentData(entity, new XBounds {Value = xBounds});
 
 			entityManager.AddSharedComponentData(entity, soldier.Renderer);

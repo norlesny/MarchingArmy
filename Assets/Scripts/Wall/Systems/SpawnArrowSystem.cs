@@ -58,7 +58,7 @@ namespace Wall.Systems
 		{
 			// TODO: Extract spawning of the arrow to a separate class and only call it from the system
 			EntityArchetype archetype = entityManager.CreateArchetype(
-				typeof(Position), typeof(Heading), typeof(Scale), typeof(Speed), typeof(DestroyCooldown));
+				typeof(Position), typeof(Velocity), typeof(Scale), typeof(DestroyCooldown));
 
 			for (var i = 0; i < 1; ++i)
 			{
@@ -69,9 +69,8 @@ namespace Wall.Systems
 				var heading = new float3(-1, 0, 0);
 
 				entityManager.SetComponentData(entity, new Position {Value = position});
-				entityManager.SetComponentData(entity, new Heading {Value = heading});
+				entityManager.SetComponentData(entity, new Velocity {Value = heading * settings.Speed});
 				entityManager.SetComponentData(entity, new Scale {Value = settings.Scale});
-				entityManager.SetComponentData(entity, new Speed {Value = settings.Speed});
 				entityManager.SetComponentData(entity, new DestroyCooldown {Value = 5f});
 
 				entityManager.AddSharedComponentData(entity, settings.Renderer);
