@@ -23,7 +23,7 @@ namespace Launcher
 			Attacher.Instance = new Attacher(World.Active.GetOrCreateManager<EntityManager>());
 			
 			new EnvironmentInstaller().Install(environment);
-			new ArmyInstaller().Install(army);
+//			new ArmyInstaller().Install(army);
 			new WallInstaller().Install(wall);
 		}
 	}

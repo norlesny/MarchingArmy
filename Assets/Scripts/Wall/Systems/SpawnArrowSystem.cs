@@ -1,5 +1,6 @@
 using System;
 using Common.Components;
+using Common.Utils;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -54,26 +55,45 @@ namespace Wall.Systems
 			}
 		}
 
+		private Entity SpawnHead(EntityArchetype archetype)
+		{
+			Entity entity = entityManager.CreateEntity(archetype);
+
+			// TODO: Arrows should be shot from the shooters (get position, heading and speed)
+			var position = new float3(25, 9.5f, 0);
+			var heading = new float3(-1, 0, 0);
+
+			entityManager.SetComponentData(entity, new Position {Value = position});
+			entityManager.SetComponentData(entity, new Velocity {Value = heading * settings.Speed});
+			entityManager.SetComponentData(entity, new DestroyCooldown {Value = 5f});
+
+			return entity;
+		}
+
+		private Entity SpawnBody(EntityArchetype archetype)
+		{
+			Entity entity = entityManager.CreateEntity(archetype);
+
+			entityManager.SetComponentData(entity, new Scale {Value = settings.Scale});
+			entityManager.AddSharedComponentData(entity, settings.Renderer);
+
+			return entity;
+		}
+
 		private void SpawnArrow()
 		{
 			// TODO: Extract spawning of the arrow to a separate class and only call it from the system
-			EntityArchetype archetype = entityManager.CreateArchetype(typeof(Position), typeof(Rotation),
-				typeof(Velocity), typeof(Scale), typeof(DestroyCooldown), typeof(AffectedByGravity), typeof(Attached));
+			EntityArchetype headArchetype = entityManager.CreateArchetype(typeof(Position), typeof(Rotation),
+				typeof(Velocity), typeof(DestroyCooldown), typeof(AffectedByGravity));
+			
+			EntityArchetype bodyArchetype = entityManager.CreateArchetype(typeof(Scale));
 
 			for (var i = 0; i < 1; ++i)
 			{
-				Entity entity = entityManager.CreateEntity(archetype);
-
-				// TODO: Arrows should be shot from the shooters (get position, heading and speed)
-				var position = new float3(25, 9.5f, 0);
-				var heading = new float3(-1, 0, 0);
-
-				entityManager.SetComponentData(entity, new Position {Value = position});
-				entityManager.SetComponentData(entity, new Velocity {Value = heading * settings.Speed});
-				entityManager.SetComponentData(entity, new Scale {Value = settings.Scale});
-				entityManager.SetComponentData(entity, new DestroyCooldown {Value = 5f});
-
-				entityManager.AddSharedComponentData(entity, settings.Renderer);
+				Entity head = SpawnHead(headArchetype);
+				Entity body = SpawnBody(bodyArchetype);
+				
+				Attacher.Instance.Attach(body, head);
 			}
 		}
 
